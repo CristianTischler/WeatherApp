@@ -1,0 +1,15 @@
+.hourSelector {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+}
+
+.sliderContainer {
+  position: relative;
+}
+
+.hourSlider {
+  width: 100%;
+}
