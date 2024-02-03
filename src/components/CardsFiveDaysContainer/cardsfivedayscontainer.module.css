@@ -1,14 +1,37 @@
 .card {
   width: 100%;
+  /* max-width: 800px; */
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  background-color: #ffd7d742;
+  align-items: stretch;
+  background-color: #ffffff42;
   border-radius: 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin: 20px;
+  /* margin: 10px; */
   text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #94949442;
+  top: 0;
+}
+@media screen and (max-width: 760px) {
+  .card {
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    margin: 10px;
+    max-width: 290px;
+  }
 }

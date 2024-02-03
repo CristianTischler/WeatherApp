@@ -10,6 +10,7 @@ import styles from "./carddayhours.module.css";
 export const CardDayHours: React.FC<CarDayHoursProps> = ({
   hours,
 }: CarDayHoursProps) => {
+  const [localHours, setLocalHours] = useState<Hourly[]>(hours);
   const [selectedHour, setSelectedHour] = useState<Hourly>(hours[0]);
   const [selectedHourFormatted, setSelectedHourFormatted] = useState({
     dayOfWeek: "",
@@ -22,6 +23,10 @@ export const CardDayHours: React.FC<CarDayHoursProps> = ({
     const formatedHour = formatSpanishDate(selectedHour.dt);
     setSelectedHourFormatted(formatedHour);
   }, [selectedHour]);
+  useEffect(() => {
+    setSelectedHour(hours[0]);
+    setLocalHours(hours);
+  }, [hours]);
   return (
     <div className={styles.currentHour}>
       <div className={styles.rowTitle}>
@@ -48,16 +53,14 @@ export const CardDayHours: React.FC<CarDayHoursProps> = ({
         </div>
         <div className={styles.currentHourTemp}>
           <p className={styles.descriptionCurrentHour}>Temperatura:</p>
-          <p className={styles.maxTemp}>
-            {selectedHour.temp.toPrecision(3)} °C
-          </p>
+          <p className={styles.maxTemp}>{selectedHour.temp.toFixed(1)} °C</p>
           <p className={styles.descriptionCurrentHour}>Humedad:</p>
           <p className={styles.humidity}>{selectedHour.humidity} %</p>
         </div>
       </div>
       <div className={styles.hourSelector}>
         <HourSelector
-          hourlyData={hours}
+          hourlyData={localHours}
           onSelectHour={(hour) => {
             setSelectedHour(hour);
           }}

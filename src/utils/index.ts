@@ -30,7 +30,6 @@ export function formatSpanishDate(timestamp: number) {
   const month = months[day.getMonth()];
   const hour = day.getHours();
 
-  // return `${dayOfWeek}, ${dayOfMonth} ${month}`;
   return {
     dayOfWeek,
     dayOfMonth,

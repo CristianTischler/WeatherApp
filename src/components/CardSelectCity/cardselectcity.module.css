@@ -1,0 +1,29 @@
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #ffffff42;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  height: 100%;
+}
+.title {
+  font-family: "__Inter_e66fe9", "__Inter_Fallback_e66fe9";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+@media screen and (max-width: 760px) {
+  .card {
+    margin: 10px;
+    max-width: 290px;
+  }
+  .title {
+    font-size: 20px;
+  }
+}

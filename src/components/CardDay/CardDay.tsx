@@ -23,8 +23,8 @@ export const CardDay: React.FC<CarDayProps> = ({ day, title }: CarDayProps) => {
         </p>
       </div>
       <div className={styles.currentDayTemp}>
-        <p className={styles.maxTemp}>{day.temp.max.toPrecision(3)} °C</p>
-        <p className={styles.minTemp}>{day.temp.min.toPrecision(3)} °C</p>
+        <p className={styles.maxTemp}>{day.temp.max.toFixed(1)} °C</p>
+        <p className={styles.minTemp}>{day.temp.min.toFixed(1)} °C</p>
       </div>
     </div>
   );
