@@ -36,7 +36,9 @@ export const CardDayHours: React.FC<CarDayHoursProps> = ({
             selectedHourFormatted.dayOfMonth}
         </p>
 
-        <p className={styles.title2}>{selectedHourFormatted.hour}:00 hs</p>
+        <p className={styles.title2} data-testid="hourTag">
+          {selectedHourFormatted.hour}:00 hs
+        </p>
       </div>
       <div className={styles.selectedHour}>
         <div className={styles.iconCurrentHour}>

@@ -10,6 +10,8 @@ export interface M_WeatherData {
 interface Current {
   dt: number;
   temp: number;
+  sunrise?: number;
+  sunset?: number;
   feels_like: number;
   pressure: number;
   humidity: number;
@@ -21,7 +23,7 @@ interface Current {
   wind_deg: number;
   wind_gust: number;
   weather: WeatherInfo[];
-  pop: number;
+  pop?: number;
 }
 export interface Hourly {
   dt: number;
@@ -38,6 +40,7 @@ export interface Hourly {
   wind_gust: number;
   weather: WeatherInfo[];
   pop: number;
+  rain?: Object;
 }
 
 export interface Daily {
@@ -49,7 +52,12 @@ export interface Daily {
   moon_phase: number;
   summary: string;
   temp: Temperature;
-  feels_like: Temperature;
+  feels_like: {
+    day: number;
+    night: number;
+    eve: number;
+    morn: number;
+  };
   pressure: number;
   humidity: number;
   dew_point: number;
@@ -60,6 +68,7 @@ export interface Daily {
   clouds: number;
   pop: number;
   uvi: number;
+  rain?: number;
 }
 
 interface Temperature {

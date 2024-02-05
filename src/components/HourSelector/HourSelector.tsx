@@ -20,6 +20,7 @@ export const HourSelector: React.FC<HourSelectorProps> = ({
     <div className={styles.hourSelector}>
       <div className={styles.sliderContainer}>
         <input
+          alt="hourSlider"
           type="range"
           id="hourSlider"
           className={styles.hourSlider}

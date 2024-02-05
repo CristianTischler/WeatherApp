@@ -35,12 +35,20 @@ export const CustomDropdown: React.FC<CustomDropdownProps> = ({
       <div className={styles.arrow}>
         <Arrow isOpen={isOpen} size={35} circleColor="#ffff" />
       </div>
-      <div className={styles.selected_option}>{selectedOption.name}</div>
+
+      <div className={styles.selected_option} data-testid="selected-option-div">
+        {selectedOption.name}
+      </div>
       <ul
         className={classNames(styles.options_list, isOpen ? styles.open : null)}
+        data-testid="listOptions"
       >
         {options.map((option, index) => (
-          <li key={index} onClick={() => handleOptionClick(option)}>
+          <li
+            key={index}
+            onClick={() => handleOptionClick(option)}
+            data-testid={`option-${option.name}`}
+          >
             {option.name}
           </li>
         ))}

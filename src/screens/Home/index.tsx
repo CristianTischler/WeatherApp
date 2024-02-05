@@ -94,7 +94,7 @@ const HomeScreen = () => {
   }, [city]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="home">
       <div
         className={classNames(
           styles.grid,
@@ -103,15 +103,18 @@ const HomeScreen = () => {
       >
         {weather !== null ? (
           <>
-            <div className={styles.currentDay}>
+            <div className={styles.currentDay} data-testid="currentDayCard">
               <CardCurrentDay
                 loading={loading}
-                currentDay={weather.daily[0]}
-                hours={weather.hourly}
+                currentDay={weather?.daily[0]}
+                hours={weather?.hourly}
               />
             </div>
-            <div className={styles.fiveDays}>
-              <CardsFiveDaysContainer days={weather.daily} loading={loading} />
+            <div
+              className={styles.fiveDays}
+              data-testid="cardsFiveDaysContainer"
+            >
+              <CardsFiveDaysContainer days={weather?.daily} loading={loading} />
             </div>
           </>
         ) : loading ? (
@@ -119,7 +122,7 @@ const HomeScreen = () => {
             <Loader />
           </div>
         ) : null}
-        <div className={styles.selectCity}>
+        <div className={styles.selectCity} data-testid="cardSelectCity">
           <CardSelectCity
             citySelected={city ?? cities[0]}
             onSelect={(value: M_City) => setCity(value)}
