@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import styles from "./loader.module.css";
 import { LoaderProps } from "./model";
 

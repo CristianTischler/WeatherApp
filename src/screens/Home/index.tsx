@@ -1,5 +1,5 @@
 "use client";
-
+import React from "react";
 import {
   CardCurrentDay,
   CardSelectCity,
@@ -47,19 +47,19 @@ const HomeScreen = () => {
   const city = useAppSelector((state) => state.weatherReducer.currentCity);
   const dispatch = useAppDispatch();
 
-  const fetch = async ({ lat, lon }: { lat: number; lon: number }) => {
-    setLoading(true);
-    const cityWeather: M_WeatherData = await getWeatherLocation({
-      lat: lat,
-      lon: lon,
-      exclude: "minutely,alerts",
-      units: "metric",
-      lang: "es",
-    });
-    dispatch(setWeatherCity(cityWeather));
-    setLoading(false);
-  };
   useEffect(() => {
+    const fetch = async ({ lat, lon }: { lat: number; lon: number }) => {
+      setLoading(true);
+      const cityWeather: M_WeatherData = await getWeatherLocation({
+        lat: lat,
+        lon: lon,
+        exclude: "minutely,alerts",
+        units: "metric",
+        lang: "es",
+      });
+      dispatch(setWeatherCity(cityWeather));
+      setLoading(false);
+    };
     if (city) fetch({ lat: city?.lat, lon: city?.long });
     else {
       if ("geolocation" in navigator) {
@@ -88,7 +88,7 @@ const HomeScreen = () => {
         console.error("Geolocation is not supported by your browser");
       }
     }
-  }, [city]);
+  }, [city, cities, dispatch]);
 
   return (
     <div className={styles.container} data-testid="home">

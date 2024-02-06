@@ -40,7 +40,9 @@ export interface Hourly {
   wind_gust: number;
   weather: WeatherInfo[];
   pop: number;
-  rain?: Object;
+  rain?: {
+    "1h": number;
+  };
 }
 
 export interface Daily {

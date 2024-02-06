@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
+import React from "react";
 import { CardSelectCityProps } from "./model";
 import styles from "./cardselectcity.module.css";
 import { CustomDropdown } from "..";

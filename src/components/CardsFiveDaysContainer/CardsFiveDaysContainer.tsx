@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { CardsFiveDaysContainerProps } from "./model";
 import styles from "./cardsfivedayscontainer.module.css";
 import { CardDay, Loader } from "..";

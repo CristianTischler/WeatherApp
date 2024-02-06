@@ -1,5 +1,4 @@
 import { I_WeatherState } from "@/models";
-import { getWeatherState } from "@/utils";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: I_WeatherState = {
@@ -12,31 +11,36 @@ const initialState: I_WeatherState = {
   },
 };
 
-interface I_Payload {
-  type: any;
-  payload: I_WeatherState["weatherState"];
-}
-interface I_PayloadWeatherCity {
-  type: any;
-  payload: I_WeatherState["weather"];
-}
-interface I_PayloadCity {
-  type: any;
-  payload: I_WeatherState["currentCity"];
+// interface I_PayloadWeatherState {
+//   payload: I_WeatherState["weatherState"];
+// }
+// interface I_PayloadWeatherCity {
+//   payload: I_WeatherState["weather"];
+// }
+// interface I_PayloadCity {
+//   payload: I_WeatherState["currentCity"];
+// }
+interface Payload<T> {
+  payload: T;
 }
 
+type WeatherState = {
+  weatherState: I_WeatherState["weatherState"];
+  weather: I_WeatherState["weather"];
+  currentCity: I_WeatherState["currentCity"];
+};
 export const weatherSlice = createSlice({
   name: "weather",
   initialState,
   reducers: {
-    setWeatherState: (state, action: I_Payload) => {
+    setWeatherState: (state, action: Payload<WeatherState["weatherState"]>) => {
       state.weatherState = action.payload;
       document.documentElement.setAttribute("data-theme", action.payload);
     },
-    setCity: (state, action: I_PayloadCity) => {
+    setCity: (state, action: Payload<WeatherState["currentCity"]>) => {
       state.currentCity = action.payload;
     },
-    setWeatherCity: (state, action: I_PayloadWeatherCity) => {
+    setWeatherCity: (state, action: Payload<WeatherState["weather"]>) => {
       state.weather = action.payload;
     },
   },

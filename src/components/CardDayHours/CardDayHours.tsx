@@ -22,7 +22,6 @@ export const CardDayHours: React.FC<CarDayHoursProps> = () => {
   });
 
   const dispatch = useAppDispatch();
-
   useEffect(() => {
     if (!selectedHour) return;
     const formatedHour = formatSpanishDate(selectedHour.dt);
@@ -32,7 +31,7 @@ export const CardDayHours: React.FC<CarDayHoursProps> = () => {
         getWeatherState({ id: selectedHour.weather[0].id, dt: selectedHour.dt })
       )
     );
-  }, [selectedHour]);
+  }, [selectedHour, dispatch]);
 
   useEffect(() => {
     if (!weatherCity) return;
