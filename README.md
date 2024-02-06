@@ -65,7 +65,7 @@ To run the project's unit tests, use the following command:
 yarn test
 ```
 
-This command will run all tests and provide you with information about their status..
+This command will run all tests and provide you with information about their status...
 
 ## Contact
 
