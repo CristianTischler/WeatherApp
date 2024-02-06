@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import styles from "./home.module.css";
 import classNames from "classnames";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setWeatherCity } from "@/redux/features/weatherSlice";
+import { setCity, setWeatherCity } from "@/redux/features/weatherSlice";
 const HomeScreen = () => {
   const [loading, setLoading] = useState(false);
   const [cities, setCities] = useState<M_City[]>([
@@ -60,36 +60,32 @@ const HomeScreen = () => {
       dispatch(setWeatherCity(cityWeather));
       setLoading(false);
     };
-    if (city) fetch({ lat: city?.lat, lon: city?.long });
-    else {
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            if (cities[0].name !== "Mi ubicación") {
-              setCities([
-                {
-                  name: "Mi ubicación",
-                  long: position.coords.longitude,
-                  lat: position.coords.latitude,
-                },
-                ...cities,
-              ]);
-            }
-            fetch({
-              lat: position.coords.latitude,
-              lon: position.coords.longitude,
-            });
-          },
-          (error) => {
-            console.error("Error getting geolocation:", error.message);
-          }
-        );
-      } else {
-        console.error("Geolocation is not supported by your browser");
-      }
-    }
+    if (city !== null) fetch({ lat: city?.lat, lon: city?.long });
   }, [city, cities, dispatch]);
 
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          if (cities[0].name !== "Mi ubicación") {
+            const myLocation = {
+              name: "Mi ubicación",
+              long: position.coords.longitude,
+              lat: position.coords.latitude,
+            };
+            setCities([myLocation, ...cities]);
+            dispatch(setCity(myLocation));
+          }
+        },
+        (error) => {
+          console.error("Error getting geolocation:", error.message);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by your browser");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className={styles.container} data-testid="home">
       <div
