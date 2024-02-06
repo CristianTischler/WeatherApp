@@ -15,7 +15,6 @@ export const CustomDropdown: React.FC<CustomDropdownProps> = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOptionClick = (option: M_City) => {
-    console.log("handleOptionClick", option);
     setSelectedOption(option);
     setIsOpen(false);
     onSelect(option);

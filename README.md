@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# WeatherApp
 
-## Getting Started
+Welcome to the WeatherApp repository!
 
-First, run the development server:
+Here you will find an exciting project that allows you to visualize the weather of your current location and five other predetermined cities. We're thrilled to have you here and will provide you with the necessary instructions to install, configure, and run this project efficiently.
+
+## Try the Project Here
+
+[WeatherApp](https://weather-app-tischlercristian.vercel.app/)
+
+## Project Description
+
+This project consists of an application that provides detailed information about the weather. With a focus on usability and accuracy, the application allows you to access the weather forecast for your current location and five other predefined cities. By using advanced technologies and following the best development practices, this application ensures a smooth and reliable experience for its users.
+
+## Requirements
+
+Before getting started, make sure to have [Node.js](https://nodejs.org/en) and [Yarn](https://yarnpkg.com/) installed on your system.
+
+## Instalación
+
+1. Clone this repository to your local machine using the following command:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/CristianTischler/WeatherApp.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the project folde:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd WeatherApp
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Install project dependencies using Yarn:
 
-## Learn More
+```bash
+yarn
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Configuration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To ensure the project works correctly, you need to create an environment variables file called ".env.local" and add the following:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+NEXT_PUBLIC_API_URL=https://api.openweathermap.org/data/3.0/onecall
+NEXT_PUBLIC_API_KEY= { REPLACE WITH YOUR API KEY }
+```
 
-## Deploy on Vercel
+You can obtain your API KEY from [Open Weather](https://home.openweathermap.org/api_keys)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Execution
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Once you have installed the dependencies, you can run the application locally as follows:
+
+```bash
+yarn dev
+```
+
+This will start the application in your local environment, and you can access it through your browser at [http://localhost:3000](http://localhost:3000).
+
+## Unit Testing
+
+To run the project's unit tests, use the following command:
+
+```bash
+yarn test
+```
+
+This command will run all tests and provide you with information about their status..
+
+## Contact
+
+Email: [tischlercristian@gmail.com](mailto:tischlercristian@gmail.com)
+
+Thank you for your interest in this project!
