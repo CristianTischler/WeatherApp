@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import { HourSelectorProps } from "./model";
 import { Hourly } from "@/models";
-import styles from "./hourSelector.module.css";
+import styles from "./hourselector.module.css";
 
 export const HourSelector: React.FC<HourSelectorProps> = ({
   hourlyData,
