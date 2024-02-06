@@ -24,7 +24,7 @@ Before getting started, make sure to have [Node.js](https://nodejs.org/en) and [
 git clone https://github.com/CristianTischler/WeatherApp.git
 ```
 
-2. Navigate to the project folde:
+2. Navigate to the project folder:
 
 ```bash
 cd WeatherApp
