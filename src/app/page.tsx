@@ -4,8 +4,8 @@ import styles from "./page.module.css";
 import HomeScreen from "@/screens/Home";
 
 export const metadata: Metadata = {
-  title: "PruebaTecnica",
-  description: "Prueba tecnica Personal Pay - Frontend",
+  title: "Weather App",
+  description: "Weather App",
 };
 
 export default function HomePage() {
