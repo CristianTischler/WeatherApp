@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import styles from "./cardcurrentDay.module.css";
+import styles from "./cardcurrentday.module.css";
 import { CardCurrentDayProps } from "./model";
 import { formatSpanishDate, getWeatherState } from "@/utils";
 import { CardDay, Loader } from "..";
