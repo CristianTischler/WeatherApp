@@ -16,7 +16,7 @@ This project consists of an application that provides detailed information about
 
 Before getting started, make sure to have [Node.js](https://nodejs.org/en) and [Yarn](https://yarnpkg.com/) installed on your system.
 
-## Instalación
+## Installation
 
 1. Clone this repository to your local machine using the following command:
 
