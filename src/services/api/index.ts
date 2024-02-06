@@ -10,14 +10,14 @@ const api = axios.create({
   },
 });
 
-// api.interceptors.response.use(
-//   (response: AxiosResponse) => {
-//     return response;
-//   },
-//   (error) => {
-//     console.log("services/axios/index.ts: ERROR= ", error);
-//     return Promise.reject(error);
-//   }
-// );
+api.interceptors.response.use(
+  (response: AxiosResponse) => {
+    return response;
+  },
+  (error) => {
+    console.log("services/axios/index.ts: ERROR= ", error);
+    return Promise.reject(error);
+  }
+);
 
 export default api;

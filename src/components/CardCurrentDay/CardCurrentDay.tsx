@@ -1,21 +1,32 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./cardCurrentDay.module.css";
-import Image from "next/image";
 import { CardCurrentDayProps } from "./model";
-import { formatSpanishDate } from "@/utils";
-import { Hourly } from "@/models";
-import { HourSelector } from "../HourSelector";
+import { formatSpanishDate, getWeatherState } from "@/utils";
 import { CardDay, Loader } from "..";
 import { CardDayHours } from "../CardDayHours";
-
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setWeatherState } from "@/redux/features/weatherSlice";
 export const CardCurrentDay: React.FC<CardCurrentDayProps> = ({
-  currentDay,
-  hours,
   loading,
 }: CardCurrentDayProps) => {
-  const formattedDate = formatSpanishDate(currentDay.dt);
+  const dispatch = useAppDispatch();
+  const weatherCity = useAppSelector((state) => state.weatherReducer.weather);
 
+  useEffect(() => {
+    if (!weatherCity) return;
+    dispatch(
+      setWeatherState(
+        getWeatherState({
+          id: weatherCity?.hourly[0].weather[0].id,
+          dt: weatherCity?.hourly[0].dt,
+        })
+      )
+    );
+  }, [dispatch, weatherCity]);
+
+  if (!weatherCity) return null;
+  const formattedDate = formatSpanishDate(weatherCity?.daily[0].dt);
   return (
     <div className={styles.card}>
       {loading ? (
@@ -31,8 +42,8 @@ export const CardCurrentDay: React.FC<CardCurrentDayProps> = ({
           formattedDate.month}
       </p>
       <div className={styles.rowContainer}>
-        <CardDay day={currentDay} title="Tiempo Hoy" />
-        <CardDayHours hours={hours} />
+        <CardDay title="Tiempo Hoy" day={weatherCity.daily[0]} />
+        <CardDayHours />
       </div>
     </div>
   );

@@ -1,17 +1,23 @@
 :root {
-  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+  --transition-duration: 5s;
+  --background: rgb(135, 206, 250);
+  --bottomBackground: rgb(173, 216, 230);
+}
+
+:root[data-theme="sunny"] {
+  /* --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-  --background: 135, 206, 250;
-  --bottomBackground: 173, 216, 230;
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
+  --background: rgb(135, 206, 250);
+  --bottomBackground: rgb(173, 216, 230);
 }
 :root[data-theme="rainy"] {
-  --background: 105, 105, 105;
-  --bottomBackground: 169, 169, 169;
+  --background: rgb(105, 105, 105);
+  --bottomBackground: rgb(169, 169, 169);
 }
 :root[data-theme="night"] {
-  --background: 0, 0, 30;
-  --bottomBackground: 51, 102, 153;
+  --background: rgb(0, 0, 30);
+  --bottomBackground: rgb(51, 102, 153);
 }
 * {
   box-sizing: border-box;
@@ -26,12 +32,13 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: rgb(var(--foreground-rgb, 255, 255, 255));
   background: linear-gradient(
     to top,
-    rgb(var(--bottomBackground)),
-    rgb(var(--background))
+    var(--bottomBackground),
+    var(--background)
   );
+  transition: background-color 2s ease-in;
 }
 
 a {

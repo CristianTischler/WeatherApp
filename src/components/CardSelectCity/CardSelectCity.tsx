@@ -4,18 +4,14 @@ import { CardSelectCityProps } from "./model";
 import styles from "./cardselectcity.module.css";
 import { CustomDropdown } from "..";
 import { M_City } from "@/models";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setCity } from "@/redux/features/weatherSlice";
 
 export const CardSelectCity: React.FC<CardSelectCityProps> = ({
-  onSelect,
   cities,
-  citySelected,
 }: CardSelectCityProps) => {
-  const [selectedOption, setSelectedOption] = useState(
-    citySelected ?? cities[0]
-  );
-  useEffect(() => {
-    setSelectedOption(citySelected);
-  }, [citySelected]);
+  const city = useAppSelector((state) => state.weatherReducer.currentCity);
+  const dispatch = useAppDispatch();
 
   return (
     <div className={styles.card}>
@@ -23,10 +19,10 @@ export const CardSelectCity: React.FC<CardSelectCityProps> = ({
         Selecciona una ciudad para ver el clima actual
       </p>
       <CustomDropdown
-        selected={selectedOption}
+        selected={city ?? cities[0]}
         options={cities}
         onSelect={(value: M_City) => {
-          onSelect(value);
+          dispatch(setCity(value));
         }}
       />
     </div>

@@ -11,10 +11,9 @@ import { getWeatherLocation } from "@/services/weatherAPI";
 import { useEffect, useState } from "react";
 import styles from "./home.module.css";
 import classNames from "classnames";
-
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setWeatherCity } from "@/redux/features/weatherSlice";
 const HomeScreen = () => {
-  const [city, setCity] = useState<M_City>();
-  const [weather, setWeather] = useState<M_WeatherData | null>(null);
   const [loading, setLoading] = useState(false);
   const [cities, setCities] = useState<M_City[]>([
     {
@@ -44,6 +43,10 @@ const HomeScreen = () => {
     },
   ]);
 
+  const weatherCity = useAppSelector((state) => state.weatherReducer.weather);
+  const city = useAppSelector((state) => state.weatherReducer.currentCity);
+  const dispatch = useAppDispatch();
+
   const fetch = async ({ lat, lon }: { lat: number; lon: number }) => {
     setLoading(true);
     const cityWeather: M_WeatherData = await getWeatherLocation({
@@ -53,10 +56,9 @@ const HomeScreen = () => {
       units: "metric",
       lang: "es",
     });
-    setWeather(cityWeather);
+    dispatch(setWeatherCity(cityWeather));
     setLoading(false);
   };
-
   useEffect(() => {
     if (city) fetch({ lat: city?.lat, lon: city?.long });
     else {
@@ -73,11 +75,6 @@ const HomeScreen = () => {
                 ...cities,
               ]);
             }
-            setCity({
-              name: "Mi ubicación",
-              long: position.coords.longitude,
-              lat: position.coords.latitude,
-            });
             fetch({
               lat: position.coords.latitude,
               lon: position.coords.longitude,
@@ -98,23 +95,19 @@ const HomeScreen = () => {
       <div
         className={classNames(
           styles.grid,
-          weather === null ? styles.grid_withOut : null
+          weatherCity === null ? styles.grid_withOut : null
         )}
       >
-        {weather !== null ? (
+        {weatherCity !== null ? (
           <>
             <div className={styles.currentDay} data-testid="currentDayCard">
-              <CardCurrentDay
-                loading={loading}
-                currentDay={weather?.daily[0]}
-                hours={weather?.hourly}
-              />
+              <CardCurrentDay loading={loading} />
             </div>
             <div
               className={styles.fiveDays}
               data-testid="cardsFiveDaysContainer"
             >
-              <CardsFiveDaysContainer days={weather?.daily} loading={loading} />
+              <CardsFiveDaysContainer loading={loading} />
             </div>
           </>
         ) : loading ? (
@@ -123,11 +116,7 @@ const HomeScreen = () => {
           </div>
         ) : null}
         <div className={styles.selectCity} data-testid="cardSelectCity">
-          <CardSelectCity
-            citySelected={city ?? cities[0]}
-            onSelect={(value: M_City) => setCity(value)}
-            cities={cities}
-          />
+          <CardSelectCity cities={cities} />
         </div>
       </div>
     </div>
